@@ -3,7 +3,7 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 import CircularJSON from 'circular-json'
 const BASE_URL=process.env.BASE_URL
-const port = 90;
+const port = process.env.PORT|| 90;
 const app = express();
 app.use(express.urlencoded());
 app.use(express.json());
