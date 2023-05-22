@@ -27,5 +27,10 @@
     "url": "https://github.com/Whorohit/backendcloudbook/issues"
   },
   "homepage": "https://github.com/Whorohit/backendcloudbook#readme",
-  "description": ""
+  "description": "",
+  "engines": {
+    "node": ">=14 <15"
+  }
+  
 }
+
