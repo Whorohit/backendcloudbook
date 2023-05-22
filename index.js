@@ -2,12 +2,13 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import CircularJSON from 'circular-json'
+const BASE_URL=process.env.BASE_URL
 const port = 90;
 const app = express();
 app.use(express.urlencoded());
 app.use(express.json());
 app.use(cors());
-mongoose.connect('mongodb+srv://ram211296:root@cluster0.sxaydjt.mongodb.net/booklist?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://ram211296:root@cluster0.yqlv4lb.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -54,16 +55,6 @@ app.post("/delete", (req, res) => {
                 res.send(data);
             })
     )
-})
-app.get("/id", async (req, res) => {
- const { id } = req.body
- book.find({_id:id})
- .then(data => {
-     console.log("Database Courses:")
-     console.log(data)
-     res.send(data);
- })
-
 })
     app.listen(port, (req, res) => {
         console.log(`the  server is running at ${port}`);
