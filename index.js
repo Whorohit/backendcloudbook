@@ -17,18 +17,20 @@ const bookSchema = mongoose.Schema({
     title: String,
     author: String,
     year: Number,
-    isbn: Number
+    isbn: Number,
+    des:String,
 })
 const book = mongoose.model('book', bookSchema)
 
 app.post("/addbook", (req, res) => {
     console.log(req.body)
-    const { title,author,year,isbn } = req.body;
+    const { title,author,year,isbn,desc } = req.body;
     const bookobj = new book({
         title,
         author,
         year,
-        isbn 
+        isbn,
+        desc,
     })
     bookobj.save().then(() => {
         console.log("send data")
@@ -44,6 +46,25 @@ app.get("/", async (req, res) => {
         })
 
 
+})
+app.get("/:id", async (req, res) => {
+    const { id } = req.params;
+    if (!id) {
+        return res.status(400).send("ID parameter is required");
+    }
+    book.findbyId({})
+    .then(data => {
+        if (!data) {
+            return res.status(404).send("Book not found");
+        }
+
+        console.log("Found Book:", data);
+        res.send(data);
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        res.status(500).send("Internal Server Error");
+    });
 })
 app.post("/delete", (req, res) => {
     const { id } = req.body
