@@ -52,7 +52,7 @@ app.get("/:id", async (req, res) => {
     if (!id) {
         return res.status(400).send("ID parameter is required");
     }
-    book.findbyId({})
+    book.findById(id)
     .then(data => {
         if (!data) {
             return res.status(404).send("Book not found");
@@ -71,7 +71,7 @@ app.post("/delete", (req, res) => {
     book.deleteOne({ _id: id }).then(
         book.find({})
             .then(data => {
-                console.log("Database Courses:")
+                console.log("Delete sucessfully")
                 res.send(data);
             })
     )
